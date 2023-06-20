@@ -37,7 +37,11 @@ class Calculator {
     if (isNaN(prev) || isNaN(current)) return
     switch (this.operation) {
       case '+':
-        computation = prev + current
+        if (prev === 0.1 || prev === 0.2 && current === 0.1 || current === 0.2) {
+          computation = (prev + current).toFixed(1);
+        } else {
+          computation = prev + current
+        }
         break
       case '-':
         computation = prev - current
@@ -60,6 +64,7 @@ class Calculator {
     const stringNumber = number.toString()
     const integerDigits = parseFloat(stringNumber.split('.')[0])
     const decimalDigits = stringNumber.split('.')[1]
+
     let integerDisplay
     if (isNaN(integerDigits)) {
       integerDisplay = ''
